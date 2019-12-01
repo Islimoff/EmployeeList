@@ -5,16 +5,22 @@ import java.util.Date;
 
 public class Employee implements Serializable {
 
+    private int id;
     private String firstName;
     private String lastName;
     private Date birthDate;
     private Profession profession;
 
-    public Employee(String firstName, String lastName, Date birthDate, Profession profession) {
+    public Employee(int id, String firstName, String lastName, Date birthDate, Profession profession) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.profession = profession;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -34,6 +40,32 @@ public class Employee implements Serializable {
 
     public Profession getProfession() {
         return profession;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return this.firstName.equals(employee.firstName) &&
+                this.lastName.equals(employee.lastName) &&
+                this.birthDate.equals(employee.birthDate) &&
+                this.profession.equals(employee.profession);
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "First Name=" + firstName +
+                ", Last Name='" + lastName + '\'' +
+                ", Date=" + birthDate +
+                ", Profession=" + profession +
+                '}';
     }
 
 }

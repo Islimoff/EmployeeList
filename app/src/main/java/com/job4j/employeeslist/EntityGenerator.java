@@ -16,10 +16,6 @@ public class EntityGenerator {
         generateEmployees();
     }
 
-    public static List<Employee> getEmployees() {
-        return employees;
-    }
-
     public static List<Profession> getProfessions() {
         return professions;
     }
@@ -39,7 +35,7 @@ public class EntityGenerator {
 
     private void generateEmployees() {
         for (int i = 0; i != 600; i++) {
-            employees.add(new Employee("Fname" + i, "Lname" + i, new Date(), gerRandomProfession()));
+            employees.add(new Employee(i,"Fname" + i, "Lname" + i, new Date(), gerRandomProfession()));
         }
     }
 

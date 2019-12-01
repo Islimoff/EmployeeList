@@ -37,15 +37,13 @@ public class ProfessionsAdapter extends RecyclerView.Adapter<ProfessionsAdapter.
         TextView professionId=holder.view.findViewById(R.id.profession_id);
         professionName.setText(profession.getName());
         professionId.setText(String.valueOf(profession.getId()));
-        professionName.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(parent, EmployeesActivity.class);
-                                        intent.putExtra("ProfessionName",profession.getName());
-                                        parent.startActivity(intent);
-                                    }
-                                }
-        );
+        professionName.setOnClickListener(view->addProfession(view,profession));
+    }
+
+    public void addProfession(View view,Profession profession) {
+        Intent intent = new Intent(parent, EmployeesActivity.class);
+        intent.putExtra("ProfessionName",profession.getName());
+        parent.startActivity(intent);
     }
 
     @Override
