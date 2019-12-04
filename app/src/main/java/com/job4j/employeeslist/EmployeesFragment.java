@@ -14,17 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 public class EmployeesFragment extends Fragment {
 
     private RecyclerView employeesList;
-    private EntityGenerator generator=EntityGenerator.getGenerator();
+    private EntityGenerator generator = EntityGenerator.getGenerator();
     private String profession;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        profession=getActivity().getIntent().getStringExtra("ProfessionName");
-        employeesList = (RecyclerView) inflater.inflate(R.layout.fragment_employees, container, false);
+        profession = getActivity().getIntent().getStringExtra("ProfessionName");
+        View view = inflater.inflate(R.layout.fragment_employees, container, false);
+        employeesList = view.findViewById(R.id.recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         employeesList.setLayoutManager(layoutManager);
-        employeesList.setAdapter(new EmployeesAdapter(getContext(),profession));
-        return employeesList;
+        employeesList.setAdapter(new EmployeesAdapter(getContext(), profession));
+        return view;
     }
 }
