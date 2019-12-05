@@ -1,5 +1,6 @@
 package com.job4j.employeeslist;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,11 @@ public class EmployeesFragment extends Fragment {
     private RecyclerView employeesList;
     private EntityGenerator generator = EntityGenerator.getGenerator();
     private String profession;
+    private EmployeeSelect select;
+
+    public interface EmployeeSelect {
+        void selected(int index);
+    }
 
     @Nullable
     @Override
@@ -23,9 +29,21 @@ public class EmployeesFragment extends Fragment {
         profession = getActivity().getIntent().getStringExtra("ProfessionName");
         View view = inflater.inflate(R.layout.fragment_employees, container, false);
         employeesList = view.findViewById(R.id.recycler);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         employeesList.setLayoutManager(layoutManager);
-        employeesList.setAdapter(new EmployeesAdapter(getContext(), profession));
+        employeesList.setAdapter(new EmployeesAdapter(select, profession));
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.select = (EmployeeSelect) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.select = null;
     }
 }

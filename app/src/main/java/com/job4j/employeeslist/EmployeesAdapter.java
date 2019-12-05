@@ -16,10 +16,12 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
 
     private final List<Employee> employees;
     private final EntityGenerator generator = EntityGenerator.getGenerator();
+    private final EmployeesFragment.EmployeeSelect select;
     private final Context parent;
 
-    public EmployeesAdapter(Context parent, String professionName) {
+    public EmployeesAdapter(Context parent, EmployeesFragment.EmployeeSelect select, String professionName) {
         this.employees = generator.filterEmployees(professionName);
+        this.select = select;
         this.parent = parent;
     }
 
@@ -28,24 +30,19 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
     public EmployeesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.employee_profession, parent, false);
-        return new EmployeesViewHolder(view);
+        return new EmployeesViewHolder(view, select);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EmployeesViewHolder holder, int position) {
-        Employee employee = this.employees.get(position);
-        TextView employeeText = holder.view.findViewById(R.id.employee);
-        TextView profession = holder.view.findViewById(R.id.profession);
-        employeeText.setText(employee.getFirstName());
-        profession.setText(employee.getProfession().getName());
-        employeeText.setOnClickListener(view -> addEmployee(view,employee));
+        holder.bind(this.employees.get(position),position);
     }
 
-    private void addEmployee(View view,Employee employee){
-            Intent intent = new Intent(parent, EmployeeActivity.class);
-            intent.putExtra(Employee.class.getSimpleName(), employee);
-            parent.startActivity(intent);
-        }
+    private void addEmployee(View view, Employee employee) {
+        Intent intent = new Intent(parent, EmployeeActivity.class);
+        intent.putExtra(Employee.class.getSimpleName(), employee);
+        parent.startActivity(intent);
+    }
 
     @Override
     public int getItemCount() {
@@ -54,11 +51,21 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
 
     class EmployeesViewHolder extends RecyclerView.ViewHolder {
 
+        private final EmployeesFragment.EmployeeSelect select;
         private View view;
 
-        public EmployeesViewHolder(@NonNull View itemView) {
+        public EmployeesViewHolder(@NonNull View itemView, EmployeesFragment.EmployeeSelect select) {
             super(itemView);
+            this.select = select;
             this.view = itemView;
+        }
+
+        public void bind(Employee employee, int index) {
+            TextView employeeText = view.findViewById(R.id.employee);
+            TextView profession = view.findViewById(R.id.profession);
+            employeeText.setText(employee.getFirstName());
+            profession.setText(employee.getProfession().getName());
+            employeeText.setOnClickListener(view -> addEmployee(view, employee));
         }
     }
 }
