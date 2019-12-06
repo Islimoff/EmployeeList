@@ -35,7 +35,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
 
     @Override
     public void onBindViewHolder(@NonNull EmployeesViewHolder holder, int position) {
-        holder.bind(this.employees.get(position),position);
+        holder.bind(this.employees.get(position));
     }
 
     private void addEmployee(View view, Employee employee) {
@@ -60,12 +60,12 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
             this.view = itemView;
         }
 
-        public void bind(Employee employee, int index) {
+        public void bind(Employee employee) {
             TextView employeeText = view.findViewById(R.id.employee);
             TextView profession = view.findViewById(R.id.profession);
             employeeText.setText(employee.getFirstName());
             profession.setText(employee.getProfession().getName());
-            employeeText.setOnClickListener(view -> addEmployee(view, employee));
+            employeeText.setOnClickListener(view -> select.selected(employee));
         }
     }
 }

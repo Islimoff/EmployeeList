@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class EmployeesFragment extends Fragment {
 
     private RecyclerView employeesList;
-    private EntityGenerator generator = EntityGenerator.getGenerator();
     private String profession;
     private EmployeeSelect select;
 
     public interface EmployeeSelect {
-        void selected(int index);
+        void selected(Employee employee);
     }
 
     @Nullable
@@ -31,7 +30,7 @@ public class EmployeesFragment extends Fragment {
         employeesList = view.findViewById(R.id.recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         employeesList.setLayoutManager(layoutManager);
-        employeesList.setAdapter(new EmployeesAdapter(select, profession));
+        employeesList.setAdapter(new EmployeesAdapter(getActivity(),select, profession));
         return view;
     }
 

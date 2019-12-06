@@ -49,6 +49,10 @@ public class EntityGenerator {
         return certainEmployees;
     }
 
+    public Employee getByIndex(int index) {
+        return employees.get(index);
+    }
+
     private Profession gerRandomProfession() {
         Random random = new Random();
         return professions.get(random.nextInt(professions.size()));

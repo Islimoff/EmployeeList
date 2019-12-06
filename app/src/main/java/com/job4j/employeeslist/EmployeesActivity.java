@@ -13,15 +13,15 @@ public class EmployeesActivity extends BaseActivity implements EmployeesFragment
     }
 
     @Override
-    public void selected(int index) {
+    public void selected(Employee employee) {
         if (findViewById(R.id.detail) == null) {
             Intent intent = new Intent(this, EmployeeActivity.class);
-            intent.putExtra("index", index);
+            intent.putExtra(Employee.class.getSimpleName(), employee);
             startActivity(intent);
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.detail, EmployeeFragment.of(index))
+                    .replace(R.id.detail, EmployeeFragment.of(employee))
                     .commit();
         }
     }

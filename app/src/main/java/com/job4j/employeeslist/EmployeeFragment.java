@@ -15,13 +15,20 @@ import java.text.SimpleDateFormat;
 
 public class EmployeeFragment extends Fragment {
 
+    public static EmployeeFragment of(Employee employee) {
+        EmployeeFragment fragment = new EmployeeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Employee.class.getSimpleName(), employee);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_employee, container, false);
-        Bundle arguments = getActivity().getIntent().getExtras();
-        Employee employee = (Employee) arguments.getSerializable(Employee.class.getSimpleName());
+        Employee employee = (Employee) getArguments().getSerializable(Employee.class.getSimpleName());
         Format formatter = new SimpleDateFormat("dd-MMM-yy");
         TextView firstName = view.findViewById(R.id.first_name);
         TextView lastName = view.findViewById(R.id.last_name);
