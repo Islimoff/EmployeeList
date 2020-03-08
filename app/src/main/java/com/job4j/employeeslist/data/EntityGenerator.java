@@ -1,4 +1,9 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.data;
+
+import com.job4j.employeeslist.dao.EmployeeDao;
+import com.job4j.employeeslist.dao.ProfessionDao;
+import com.job4j.employeeslist.models.Employee;
+import com.job4j.employeeslist.models.Profession;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,14 +15,20 @@ public class EntityGenerator {
     private static EntityGenerator generator;
     private static List<Profession> professions = new ArrayList<>();
     private static List<Employee> employees = new ArrayList<>();
+    private AppDatabase db;
+    private EmployeeDao employeeDao;
+    private ProfessionDao professionDao;
 
     private EntityGenerator() {
+        db = App.getInstance().getDatabase();
+        employeeDao = db.employeeDao();
+        professionDao=db.professionDao();
         generateProfessions();
         generateEmployees();
     }
 
     public static List<Profession> getProfessions() {
-        return professions;
+        return professions=ProfessionStore.getStore().getAll();
     }
 
     public static EntityGenerator getGenerator() {
@@ -29,13 +40,14 @@ public class EntityGenerator {
 
     private void generateProfessions() {
         for (int i = 0; i != 50; i++) {
-            professions.add(new Profession("Prof" + i, i));
+            ProfessionStore.getStore().add(new Profession("Prof" + i, i));
         }
     }
 
     private void generateEmployees() {
         for (int i = 0; i != 600; i++) {
-            employees.add(new Employee(i,"Fname" + i, "Lname" + i, new Date(), gerRandomProfession()));
+           EmployeeStore.getStore().add(new Employee(
+                   i,"Fname" + i, "Lname" + i, new Date(), gerRandomProfession()));
         }
     }
 

@@ -1,4 +1,4 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.job4j.employeeslist.models.Employee;
+import com.job4j.employeeslist.adapters.EmployeesAdapter;
+import com.job4j.employeeslist.R;
 
 public class EmployeesFragment extends Fragment {
 

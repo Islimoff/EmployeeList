@@ -1,4 +1,4 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.job4j.employeeslist.models.Employee;
+import com.job4j.employeeslist.R;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;

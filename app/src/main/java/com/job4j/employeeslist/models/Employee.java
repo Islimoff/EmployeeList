@@ -1,14 +1,19 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.models;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
 public class Employee implements Serializable {
 
+    @PrimaryKey
     private int id;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private long birthDate;
     private Profession profession;
 
     public Employee(int id, String firstName, String lastName, Date birthDate, Profession profession) {

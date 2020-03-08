@@ -3,22 +3,23 @@
     package="com.job4j.employeeslist">
 
     <application
+        android:name="com.job4j.employeeslist.data.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfessionsActivity">
+        <activity android:name=".activities.ProfessionsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EmployeesActivity">
+        <activity android:name=".activities.EmployeesActivity">
         </activity>
-        <activity android:name=".EmployeeActivity">
+        <activity android:name=".activities.EmployeeActivity">
         </activity>
     </application>
 

@@ -1,9 +1,14 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.activities;
 
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.job4j.employeeslist.models.Employee;
+import com.job4j.employeeslist.fragments.EmployeeFragment;
+import com.job4j.employeeslist.fragments.EmployeesFragment;
+import com.job4j.employeeslist.R;
 
 public class EmployeesActivity extends BaseActivity implements EmployeesFragment.EmployeeSelect {
 

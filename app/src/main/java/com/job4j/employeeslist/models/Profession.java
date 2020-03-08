@@ -1,11 +1,16 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.models;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity
 public class Profession implements Serializable {
 
-    private String name;
+    @PrimaryKey
     private int id;
+    private String name;
 
     public Profession(String name, int id) {
         this.name = name;

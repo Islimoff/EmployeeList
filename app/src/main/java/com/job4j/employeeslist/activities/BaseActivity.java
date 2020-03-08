@@ -1,4 +1,4 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.activities;
 
 import android.os.Bundle;
 
@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
+import com.job4j.employeeslist.R;
 
 public abstract class BaseActivity extends FragmentActivity {
 

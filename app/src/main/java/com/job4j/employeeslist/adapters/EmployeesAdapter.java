@@ -1,4 +1,4 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.job4j.employeeslist.R;
+import com.job4j.employeeslist.activities.EmployeeActivity;
+import com.job4j.employeeslist.data.EntityGenerator;
+import com.job4j.employeeslist.fragments.EmployeesFragment;
+import com.job4j.employeeslist.models.Employee;
 
 import java.util.List;
 

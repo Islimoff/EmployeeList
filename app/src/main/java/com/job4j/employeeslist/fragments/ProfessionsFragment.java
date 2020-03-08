@@ -1,4 +1,4 @@
-package com.job4j.employeeslist;
+package com.job4j.employeeslist.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.job4j.employeeslist.data.EntityGenerator;
+import com.job4j.employeeslist.adapters.ProfessionsAdapter;
+import com.job4j.employeeslist.R;
 
 public class ProfessionsFragment extends Fragment {
 
