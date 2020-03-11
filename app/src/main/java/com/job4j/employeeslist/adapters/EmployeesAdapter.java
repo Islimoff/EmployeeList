@@ -25,8 +25,8 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
     private final EmployeesFragment.EmployeeSelect select;
     private final Context parent;
 
-    public EmployeesAdapter(Context parent, EmployeesFragment.EmployeeSelect select, String professionName) {
-        this.employees = generator.filterEmployees(professionName);
+    public EmployeesAdapter(Context parent, EmployeesFragment.EmployeeSelect select, int professionId) {
+        this.employees = generator.filterEmployees(professionId);
         this.select = select;
         this.parent = parent;
     }
@@ -70,7 +70,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
             TextView employeeText = view.findViewById(R.id.employee);
             TextView profession = view.findViewById(R.id.profession);
             employeeText.setText(employee.getFirstName());
-            profession.setText(employee.getProfession().getName());
+            profession.setText(employee.getProfessionId());
             employeeText.setOnClickListener(view -> select.selected(employee));
         }
     }

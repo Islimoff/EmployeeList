@@ -5,6 +5,9 @@ import com.job4j.employeeslist.dao.ProfessionDao;
 import com.job4j.employeeslist.models.Employee;
 import com.job4j.employeeslist.models.Profession;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,21 +43,21 @@ public class EntityGenerator {
 
     private void generateProfessions() {
         for (int i = 0; i != 50; i++) {
-            ProfessionStore.getStore().add(new Profession("Prof" + i, i));
+            ProfessionStore.getStore().add(new Profession("Prof" + i,0));
         }
     }
 
     private void generateEmployees() {
         for (int i = 0; i != 600; i++) {
            EmployeeStore.getStore().add(new Employee(
-                   i,"Fname" + i, "Lname" + i, new Date(), gerRandomProfession()));
+                   i,"Fname" + i, "Lname" + i,System.currentTimeMillis(), gerRandomProfession().getId()));
         }
     }
 
-    public List<Employee> filterEmployees(String profession) {
+    public List<Employee> filterEmployees(int professionId) {
         List<Employee> certainEmployees = new ArrayList<>();
         for (int i = 0; i != employees.size(); i++) {
-            if (employees.get(i).getProfession().getName().equals(profession)) {
+            if (employees.get(i).getProfessionId()==professionId) {
                 certainEmployees.add(employees.get(i));
             }
         }

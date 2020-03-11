@@ -19,7 +19,7 @@ import com.job4j.employeeslist.R;
 public class EmployeesFragment extends Fragment {
 
     private RecyclerView employeesList;
-    private String profession;
+    private int professionId;
     private EmployeeSelect select;
 
     public interface EmployeeSelect {
@@ -29,12 +29,12 @@ public class EmployeesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        profession = getActivity().getIntent().getStringExtra("ProfessionName");
+        professionId = getActivity().getIntent().getIntExtra("ProfessionId",0);
         View view = inflater.inflate(R.layout.fragment_employees, container, false);
         employeesList = view.findViewById(R.id.recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         employeesList.setLayoutManager(layoutManager);
-        employeesList.setAdapter(new EmployeesAdapter(getActivity(),select, profession));
+        employeesList.setAdapter(new EmployeesAdapter(getActivity(),select, professionId));
         return view;
     }
 

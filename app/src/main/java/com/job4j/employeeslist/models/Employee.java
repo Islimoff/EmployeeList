@@ -14,18 +14,22 @@ public class Employee implements Serializable {
     private String firstName;
     private String lastName;
     private long birthDate;
-    private Profession profession;
+    private int professionId;
 
-    public Employee(int id, String firstName, String lastName, Date birthDate, Profession profession) {
+    public Employee(int id, String firstName, String lastName, long birthDate, int professionId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.profession = profession;
+        this.professionId = professionId;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -38,13 +42,13 @@ public class Employee implements Serializable {
     }
 
 
-    public Date getBirthDate() {
+    public long getBirthDate() {
         return birthDate;
     }
 
 
-    public Profession getProfession() {
-        return profession;
+    public int getProfessionId() {
+        return professionId;
     }
 
     @Override
@@ -54,8 +58,8 @@ public class Employee implements Serializable {
         Employee employee = (Employee) o;
         return this.firstName.equals(employee.firstName) &&
                 this.lastName.equals(employee.lastName) &&
-                this.birthDate.equals(employee.birthDate) &&
-                this.profession.equals(employee.profession);
+                this.birthDate==employee.birthDate&&
+                this.professionId==employee.professionId;
     }
 
     @Override
@@ -69,7 +73,7 @@ public class Employee implements Serializable {
                 "First Name=" + firstName +
                 ", Last Name='" + lastName + '\'' +
                 ", Date=" + birthDate +
-                ", Profession=" + profession +
+                ", ProfessionID=" + professionId +
                 '}';
     }
 

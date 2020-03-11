@@ -46,7 +46,7 @@ public class ProfessionsAdapter extends RecyclerView.Adapter<ProfessionsAdapter.
 
     public void addProfession(View view,Profession profession) {
         Intent intent = new Intent(parent, EmployeesActivity.class);
-        intent.putExtra("ProfessionName",profession.getName());
+        intent.putExtra("ProfessionId",profession.getId());
         parent.startActivity(intent);
     }
 
