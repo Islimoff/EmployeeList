@@ -16,8 +16,6 @@ import java.util.Random;
 public class EntityGenerator {
 
     private static EntityGenerator generator;
-    private static List<Profession> professions = new ArrayList<>();
-    private static List<Employee> employees = new ArrayList<>();
     private AppDatabase db;
     private EmployeeDao employeeDao;
     private ProfessionDao professionDao;
@@ -25,13 +23,11 @@ public class EntityGenerator {
     private EntityGenerator() {
         db = App.getInstance().getDatabase();
         employeeDao = db.employeeDao();
-        professionDao=db.professionDao();
-        generateProfessions();
-        generateEmployees();
-    }
-
-    public static List<Profession> getProfessions() {
-        return professions=ProfessionStore.getStore().getAll();
+        professionDao = db.professionDao();
+        if (professionDao.getAll().size() == 0) {
+            generateProfessions();
+            generateEmployees();
+        }
     }
 
     public static EntityGenerator getGenerator() {
@@ -42,33 +38,31 @@ public class EntityGenerator {
     }
 
     private void generateProfessions() {
-        for (int i = 0; i != 50; i++) {
-            ProfessionStore.getStore().add(new Profession("Prof" + i,0));
+        for (int i = 1; i != 50; i++) {
+            ProfessionStore.getStore().add(new Profession("Prof" + i));
         }
     }
 
     private void generateEmployees() {
         for (int i = 0; i != 600; i++) {
-           EmployeeStore.getStore().add(new Employee(
-                   i,"Fname" + i, "Lname" + i,System.currentTimeMillis(), gerRandomProfession().getId()));
+            EmployeeStore.getStore().add(new Employee(
+                    i, "Fname" + i, "Lname" + i, System.currentTimeMillis(), gerRandomProfession().getId()));
         }
     }
 
     public List<Employee> filterEmployees(int professionId) {
+        List<Employee> employees = EmployeeStore.getStore().getAll();
         List<Employee> certainEmployees = new ArrayList<>();
         for (int i = 0; i != employees.size(); i++) {
-            if (employees.get(i).getProfessionId()==professionId) {
+            if (employees.get(i).getProfessionId() == professionId) {
                 certainEmployees.add(employees.get(i));
             }
         }
         return certainEmployees;
     }
 
-    public Employee getByIndex(int index) {
-        return employees.get(index);
-    }
-
     private Profession gerRandomProfession() {
+        List<Profession> professions = ProfessionStore.getStore().getAll();
         Random random = new Random();
         return professions.get(random.nextInt(professions.size()));
     }

@@ -8,13 +8,12 @@ import java.io.Serializable;
 @Entity
 public class Profession implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
 
-    public Profession(String name, int id) {
+    public Profession(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public String getName() {
@@ -23,6 +22,10 @@ public class Profession implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

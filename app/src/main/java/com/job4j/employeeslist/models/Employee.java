@@ -58,8 +58,8 @@ public class Employee implements Serializable {
         Employee employee = (Employee) o;
         return this.firstName.equals(employee.firstName) &&
                 this.lastName.equals(employee.lastName) &&
-                this.birthDate==employee.birthDate&&
-                this.professionId==employee.professionId;
+                this.birthDate == employee.birthDate &&
+                this.professionId == employee.professionId;
     }
 
     @Override

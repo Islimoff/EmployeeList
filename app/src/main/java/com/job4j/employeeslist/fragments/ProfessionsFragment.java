@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.job4j.employeeslist.data.EntityGenerator;
 import com.job4j.employeeslist.adapters.ProfessionsAdapter;
 import com.job4j.employeeslist.R;
+import com.job4j.employeeslist.data.ProfessionStore;
 
 public class ProfessionsFragment extends Fragment {
 
@@ -26,7 +27,8 @@ public class ProfessionsFragment extends Fragment {
         professionsList = (RecyclerView) inflater.inflate(R.layout.fragment_professions, container, false);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         professionsList.setLayoutManager(layoutManager);
-        professionsList.setAdapter(new ProfessionsAdapter(generator.getProfessions(),getContext()));
+        professionsList.setAdapter(new ProfessionsAdapter(ProfessionStore.getStore().getAll()
+                ,getContext()));
         return professionsList;
     }
 }

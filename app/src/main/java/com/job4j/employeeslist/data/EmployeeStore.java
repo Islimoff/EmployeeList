@@ -25,7 +25,7 @@ public class EmployeeStore implements SqlStore<Employee> {
 
     @Override
     public void add(Employee employee) {
-      employeeDao.insert(employee);
+        employeeDao.insert(employee);
     }
 
     @Override

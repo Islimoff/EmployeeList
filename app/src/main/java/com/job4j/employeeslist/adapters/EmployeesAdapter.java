@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.job4j.employeeslist.R;
 import com.job4j.employeeslist.activities.EmployeeActivity;
 import com.job4j.employeeslist.data.EntityGenerator;
+import com.job4j.employeeslist.data.ProfessionStore;
 import com.job4j.employeeslist.fragments.EmployeesFragment;
 import com.job4j.employeeslist.models.Employee;
+import com.job4j.employeeslist.models.Profession;
 
 import java.util.List;
 
@@ -68,9 +70,11 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.Empl
 
         public void bind(Employee employee) {
             TextView employeeText = view.findViewById(R.id.employee);
-            TextView profession = view.findViewById(R.id.profession);
+            TextView professionName = view.findViewById(R.id.profession);
             employeeText.setText(employee.getFirstName());
-            profession.setText(employee.getProfessionId());
+            Profession profession = ProfessionStore.getStore()
+                    .getById(employee.getProfessionId());
+            professionName.setText(profession.getName());
             employeeText.setOnClickListener(view -> select.selected(employee));
         }
     }
