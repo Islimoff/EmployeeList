@@ -38,7 +38,7 @@ public class EmployeeFragment extends Fragment {
         TextView date = view.findViewById(R.id.date);
         firstName.setText(employee.getFirstName());
         lastName.setText(employee.getLastName());
-        date.setText(formatter.format(employee.getBirthDate()));
+        date.setText(employee.getBirthday());
         return view;
     }
 }

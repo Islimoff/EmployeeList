@@ -3,12 +3,15 @@ package com.job4j.employeeslist.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 @Entity
 public class Profession implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("specialty_id")
     private int id;
     private String name;
 

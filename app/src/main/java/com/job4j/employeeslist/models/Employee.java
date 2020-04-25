@@ -3,24 +3,28 @@ package com.job4j.employeeslist.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class Employee implements Serializable {
 
     @PrimaryKey
     private int id;
+    @SerializedName("f_name")
     private String firstName;
+    @SerializedName("l_name")
     private String lastName;
-    private long birthDate;
+    private String birthday;
+    @SerializedName("specialty_id")
     private int professionId;
 
-    public Employee(int id, String firstName, String lastName, long birthDate, int professionId) {
+    public Employee(int id, String firstName, String lastName, String birthday, int professionId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
         this.professionId = professionId;
     }
 
@@ -42,8 +46,8 @@ public class Employee implements Serializable {
     }
 
 
-    public long getBirthDate() {
-        return birthDate;
+    public String getBirthday() {
+        return birthday;
     }
 
 
@@ -58,7 +62,7 @@ public class Employee implements Serializable {
         Employee employee = (Employee) o;
         return this.firstName.equals(employee.firstName) &&
                 this.lastName.equals(employee.lastName) &&
-                this.birthDate == employee.birthDate &&
+                this.birthday.equals(employee.birthday) &&
                 this.professionId == employee.professionId;
     }
 
@@ -72,7 +76,7 @@ public class Employee implements Serializable {
         return "Employee{" +
                 "First Name=" + firstName +
                 ", Last Name='" + lastName + '\'' +
-                ", Date=" + birthDate +
+                ", Date=" + birthday +
                 ", ProfessionID=" + professionId +
                 '}';
     }

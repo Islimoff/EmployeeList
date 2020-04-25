@@ -46,7 +46,7 @@ public class EntityGenerator {
     private void generateEmployees() {
         for (int i = 0; i != 600; i++) {
             EmployeeStore.getStore().add(new Employee(
-                    i, "Fname" + i, "Lname" + i, System.currentTimeMillis(), gerRandomProfession().getId()));
+                    i, "Fname" + i, "Lname" + i, "System.currentTimeMillis()", gerRandomProfession().getId()));
         }
     }
 

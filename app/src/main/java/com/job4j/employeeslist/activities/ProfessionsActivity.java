@@ -8,6 +8,7 @@ public class ProfessionsActivity extends BaseActivity {
 
     @Override
     public Fragment loadFragment() {
+
         return new ProfessionsFragment();
     }
 }
